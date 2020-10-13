@@ -1,0 +1,47 @@
+[
+  {
+    "IdPokladniZaznam": 1,
+    "Cislo": 1,
+    "Datum": "2020-01-03T00:00:00",
+    "Popis": "Příjem z banky",
+    "Castka": 20000.0,
+    "Zustatek": 20000.0,
+    "Poznamka": ""
+  },
+  {
+    "IdPokladniZaznam": 2,
+    "Cislo": 2,
+    "Datum": "2020-01-04T00:00:00",
+    "Popis": "Tenisové míče",
+    "Castka": -2356.0,
+    "Zustatek": 17644.0,
+    "Poznamka": "Dotace - MŠMT"
+  },
+  {
+    "IdPokladniZaznam": 3,
+    "Cislo": 3,
+    "Datum": "2020-01-08T00:00:00",
+    "Popis": "Občerstvení",
+    "Castka": -538.0,
+    "Zustatek": 17106.0,
+    "Poznamka": ""
+  },
+  {
+    "IdPokladniZaznam": 4,
+    "Cislo": 4,
+    "Datum": "2020-01-10T00:00:00",
+    "Popis": "Pronájem kurtu",
+    "Castka": 350.0,
+    "Zustatek": 17456.0,
+    "Poznamka": ""
+  },
+  {
+    "IdPokladniZaznam": 5,
+    "Cislo": 5,
+    "Datum": "2020-01-20T00:00:00",
+    "Popis": "Registrace soutěží",
+    "Castka": 2500.0,
+    "Zustatek": 14956.0,
+    "Poznamka": ""
+  }
+]
