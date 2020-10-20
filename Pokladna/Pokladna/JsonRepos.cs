@@ -25,7 +25,7 @@ namespace Pokladna
             data.Add(new PokladniZaznam(2, 2, new DateTime(2020, 1, 4), "Tenisové míče", -2356, data.Last().Zustatek - 2356, "Dotace - MŠMT"));
             data.Add(new PokladniZaznam(3, 3, new DateTime(2020, 1, 8), "Občerstvení", -538, data.Last().Zustatek - 538, ""));
             data.Add(new PokladniZaznam(4, 4, new DateTime(2020, 1, 10), "Pronájem kurtu", 350, data.Last().Zustatek + 350, ""));
-            data.Add(new PokladniZaznam(5, 5, new DateTime(2020, 1, 20), "Registrace soutěží", 2500, data.Last().Zustatek - 2500, ""));
+            data.Add(new PokladniZaznam(5, 5, new DateTime(2020, 1, 20), "Registrace soutěží", -2500, data.Last().Zustatek - 2500, ""));
 
             string json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
@@ -41,7 +41,10 @@ namespace Pokladna
 
         public List<PokladniZaznam> NactiMesic(int rok, int mesic)
         {
-            return NactiVse().FindAll(prvek => prvek.Datum.Year == rok && prvek.Datum.Month == mesic);
+            List<PokladniZaznam> data = NactiVse();
+            data = NactiVse().FindAll(prvek => prvek.Datum.Year == rok && prvek.Datum.Month == mesic);
+            data.Sort((a, b) => a.Datum.CompareTo(b.Datum));
+            return data;
         }
 
         public PokladniZaznam NactiZaznam(int idPokladniZaznam)
@@ -61,7 +64,61 @@ namespace Pokladna
 
         public PokladniZaznam VytvorZaznam(PokladniZaznam pokladniZaznam)
         {
-            throw new NotImplementedException();
+            List<PokladniZaznam> data = NactiVse();
+            if (data.Find(doklad => doklad.Datum > pokladniZaznam.Datum) == null)
+            //vkládaný záznam je poslední
+            {
+                data.Sort((a, b) => a.IdPokladniZaznam.CompareTo(b.IdPokladniZaznam));
+                pokladniZaznam.IdPokladniZaznam = data.Last().IdPokladniZaznam + 1;
+                data.Sort((a, b) => a.Datum.CompareTo(b.Datum));
+                if(data.Last().Datum.Month == pokladniZaznam.Datum.Month)
+                {
+                   pokladniZaznam.Cislo = data.Last().Cislo + 1;
+                }
+                else
+                {
+                    pokladniZaznam.Cislo = 1;
+                }
+                pokladniZaznam.Zustatek = data.Last().Zustatek + pokladniZaznam.Castka;
+            }
+            //vkládaný záznam není poslední
+            else
+            {
+                // Id bude nejvyšší +1
+                data.Sort((a, b) => a.IdPokladniZaznam.CompareTo(b.IdPokladniZaznam));
+                pokladniZaznam.IdPokladniZaznam = data.Last().IdPokladniZaznam + 1;
+                //Číslo bude o jedna vyšší než poslední ve stejném měsíci
+                List<PokladniZaznam> dataMesice = data.FindAll(doklad => doklad.Datum.Year == pokladniZaznam.Datum.Year && doklad.Datum.Month == pokladniZaznam.Datum.Month);
+                dataMesice.Sort((a, b) => a.Datum.CompareTo(b.Datum));
+                if(dataMesice.Count > 0)
+                {
+                    if(dataMesice.Find(doklad => doklad.Datum > pokladniZaznam.Datum) == null)
+                        //Je poslední v rámci měsíce
+                    {
+                        pokladniZaznam.Cislo = dataMesice.Last().Cislo + 1;
+                    }
+                    else
+                    {
+                        int index = dataMesice.FindIndex(doklad => doklad.Datum > pokladniZaznam.Datum);
+
+                        pokladniZaznam.Cislo = dataMesice[index].Cislo;
+                        for (int i = index; i < dataMesice.Count; i++)
+                             {
+                                dataMesice[i].Cislo++;
+                             }
+                    }
+                }
+                else
+                {
+                    pokladniZaznam.Cislo = 1;
+                }
+                // Zůstatek je 
+            }
+            data.Add(pokladniZaznam);
+            string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+
+            File.WriteAllText(datovySoubor, json);
+            return pokladniZaznam;
         }
 
     }

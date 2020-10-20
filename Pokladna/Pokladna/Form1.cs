@@ -23,7 +23,7 @@ namespace Pokladna
         private void Form1_Load(object sender, EventArgs e)
         {
             JsonRepos jsonRepos = new JsonRepos("data.json");
-            jsonRepos.VytvorTestData();
+            //jsonRepos.VytvorTestData();
             repositar = jsonRepos;
 
             comboBoxRok.SelectedIndex = comboBoxRok.Items.IndexOf(DateTime.Now.Year.ToString());
@@ -38,7 +38,7 @@ namespace Pokladna
             //}
         }
 
-        private void comboBoxRok_SelectedIndexChanged(object sender, EventArgs e)
+        private void NactiAktMesic()
         {
             if (comboBoxRok.SelectedIndex >= 0 && comboBoxMesic.SelectedIndex >= 0)
             {
@@ -49,6 +49,35 @@ namespace Pokladna
                     listView1.Items.Add(p.DoLvItem());
                 }
             }
+        }
+
+        private void comboBoxRok_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NactiAktMesic();
+        }
+
+        private void textBoxCisloDokladu_TextChanged(object sender, EventArgs e)
+        {
+            buttonUlozit.Enabled = textBoxCisloDokladu.Text != "";
+        }
+
+        private void textBoxPopis_TextChanged(object sender, EventArgs e)
+        {
+            buttonUlozitJakoNovy.Enabled = textBoxPopis.Text.Trim() != "" && numericUpDownCastka.Value != 0;
+        }
+
+        private void numericUpDownCastka_ValueChanged(object sender, EventArgs e)
+        {
+            buttonUlozitJakoNovy.Enabled = textBoxPopis.Text.Trim() != "" && numericUpDownCastka.Value != 0;
+        }
+
+        private void buttonUlozitJakoNovy_Click(object sender, EventArgs e)
+        {
+            PokladniZaznam novyZaznam = new PokladniZaznam(dateTimePickerDatum.Value, textBoxPopis.Text, (double)numericUpDownCastka.Value, textBoxPoznamka.Text);
+            repositar.VytvorZaznam(novyZaznam);
+            NactiAktMesic();
+            textBoxPopis.Text = "";
+            numericUpDownCastka.Value = 0;
         }
     }
 }
