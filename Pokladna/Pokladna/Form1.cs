@@ -26,12 +26,28 @@ namespace Pokladna
             jsonRepos.VytvorTestData();
             repositar = jsonRepos;
 
+            comboBoxRok.SelectedIndex = comboBoxRok.Items.IndexOf(DateTime.Now.Year.ToString());
+            comboBoxMesic.SelectedIndex = DateTime.Now.Month-1;
+
             //repositar = new SqlRepos();
             //repositar = new XmlRepos();
-            pokladna = repositar.NactiVse(); 
-            foreach (var p in pokladna)
+            //pokladna = repositar.NactiVse(); 
+            //foreach (var p in pokladna)
+            //{
+            //    listView1.Items.Add(p.DoLvItem());
+            //}
+        }
+
+        private void comboBoxRok_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxRok.SelectedIndex >= 0 && comboBoxMesic.SelectedIndex >= 0)
             {
-                listView1.Items.Add(p.DoLvItem());
+                pokladna = repositar.NactiMesic(int.Parse(comboBoxRok.SelectedItem.ToString()), comboBoxMesic.SelectedIndex + 1);
+                listView1.Items.Clear();
+                foreach (var p in pokladna)
+                {
+                    listView1.Items.Add(p.DoLvItem());
+                }
             }
         }
     }
