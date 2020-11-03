@@ -24,7 +24,9 @@ namespace Pokladna
         {
             JsonRepos jsonRepos = new JsonRepos("data.json");
             //jsonRepos.VytvorTestData();
-            repositar = jsonRepos;
+            SqlRepos sqlRepos = new SqlRepos();
+            sqlRepos.VytvorTestData(jsonRepos.NactiVse());
+            repositar = sqlRepos;
 
             comboBoxRok.SelectedIndex = comboBoxRok.Items.IndexOf(DateTime.Now.Year.ToString());
             comboBoxMesic.SelectedIndex = DateTime.Now.Month-1;
@@ -53,6 +55,7 @@ namespace Pokladna
 
         private void comboBoxRok_SelectedIndexChanged(object sender, EventArgs e)
         {
+  
             NactiAktMesic();
         }
 
