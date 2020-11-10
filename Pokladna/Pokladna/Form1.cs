@@ -25,7 +25,7 @@ namespace Pokladna
             JsonRepos jsonRepos = new JsonRepos("data.json");
             //jsonRepos.VytvorTestData();
             SqlRepos sqlRepos = new SqlRepos();
-            sqlRepos.VytvorTestData(jsonRepos.NactiVse());
+            //sqlRepos.VytvorTestData(jsonRepos.NactiVse());
             repositar = sqlRepos;
 
             comboBoxRok.SelectedIndex = comboBoxRok.Items.IndexOf(DateTime.Now.Year.ToString());
@@ -81,6 +81,7 @@ namespace Pokladna
             NactiAktMesic();
             textBoxPopis.Text = "";
             numericUpDownCastka.Value = 0;
+            textBoxPoznamka.Text = "";
         }
     }
 }

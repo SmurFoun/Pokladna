@@ -108,7 +108,7 @@ namespace Pokladna
             using (SqlConnection sqlConnection = new SqlConnection(connString))
             {
                 string dotaz = $"insert into PokladniZaznamy(Cislo, Datum, Popis ,Castka ,Zustatek,Poznamka) " +
-                             $"values({z.Cislo}, '{z.Datum.ToString("yyyyMMdd")}', '{z.Popis}', {z.Castka}, {z.Zustatek}, '{z.Poznamka}')"; ;
+                             $"values({z.Cislo}, '{z.Datum.ToString("yyyyMMdd")}', '{z.Popis}', {z.Castka}, {z.Zustatek}, '{z.Poznamka}') \r\n" + $"exec dbo.spOpravaZaznamu";
                 using (SqlCommand sqlCommand = new SqlCommand(dotaz, sqlConnection))
                 {
                     sqlConnection.Open();
