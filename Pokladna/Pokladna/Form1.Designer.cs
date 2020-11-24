@@ -29,6 +29,19 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonUlozitJakoNovy = new System.Windows.Forms.Button();
+            this.buttonUlozit = new System.Windows.Forms.Button();
+            this.textBoxPoznamka = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numericUpDownCastka = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxPopis = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxCisloDokladu = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dateTimePickerDatum = new System.Windows.Forms.DateTimePicker();
             this.groupBoxObdobi = new System.Windows.Forms.GroupBox();
             this.comboBoxMesic = new System.Windows.Forms.ComboBox();
             this.comboBoxRok = new System.Windows.Forms.ComboBox();
@@ -42,29 +55,22 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.dateTimePickerDatum = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxCisloDokladu = new System.Windows.Forms.TextBox();
-            this.textBoxPopis = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.numericUpDownCastka = new System.Windows.Forms.NumericUpDown();
-            this.textBoxPoznamka = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.buttonUlozit = new System.Windows.Forms.Button();
-            this.buttonUlozitJakoNovy = new System.Windows.Forms.Button();
+            this.comboBoxTridit = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.checkBoxSestupne = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
-            this.groupBoxObdobi.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCastka)).BeginInit();
+            this.groupBoxObdobi.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.checkBoxSestupne);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.comboBoxTridit);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.groupBoxObdobi);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -72,6 +78,144 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(311, 513);
             this.panel1.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.buttonUlozitJakoNovy);
+            this.groupBox1.Controls.Add(this.buttonUlozit);
+            this.groupBox1.Controls.Add(this.textBoxPoznamka);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.numericUpDownCastka);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.textBoxPopis);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.textBoxCisloDokladu);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.dateTimePickerDatum);
+            this.groupBox1.Location = new System.Drawing.Point(3, 91);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(303, 213);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Položka";
+            // 
+            // buttonUlozitJakoNovy
+            // 
+            this.buttonUlozitJakoNovy.Enabled = false;
+            this.buttonUlozitJakoNovy.Location = new System.Drawing.Point(100, 173);
+            this.buttonUlozitJakoNovy.Name = "buttonUlozitJakoNovy";
+            this.buttonUlozitJakoNovy.Size = new System.Drawing.Size(108, 34);
+            this.buttonUlozitJakoNovy.TabIndex = 16;
+            this.buttonUlozitJakoNovy.Text = "Uložit jako nový";
+            this.buttonUlozitJakoNovy.UseVisualStyleBackColor = true;
+            this.buttonUlozitJakoNovy.Click += new System.EventHandler(this.buttonUlozitJakoNovy_Click);
+            // 
+            // buttonUlozit
+            // 
+            this.buttonUlozit.Enabled = false;
+            this.buttonUlozit.Location = new System.Drawing.Point(214, 173);
+            this.buttonUlozit.Name = "buttonUlozit";
+            this.buttonUlozit.Size = new System.Drawing.Size(83, 34);
+            this.buttonUlozit.TabIndex = 15;
+            this.buttonUlozit.Text = "Uložit";
+            this.buttonUlozit.UseVisualStyleBackColor = true;
+            this.buttonUlozit.Click += new System.EventHandler(this.buttonUlozit_Click);
+            // 
+            // textBoxPoznamka
+            // 
+            this.textBoxPoznamka.Location = new System.Drawing.Point(88, 147);
+            this.textBoxPoznamka.Name = "textBoxPoznamka";
+            this.textBoxPoznamka.Size = new System.Drawing.Size(207, 20);
+            this.textBoxPoznamka.TabIndex = 14;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(24, 150);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(57, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Poznámka";
+            // 
+            // numericUpDownCastka
+            // 
+            this.numericUpDownCastka.Location = new System.Drawing.Point(88, 121);
+            this.numericUpDownCastka.Maximum = new decimal(new int[] {
+            200000,
+            0,
+            0,
+            0});
+            this.numericUpDownCastka.Minimum = new decimal(new int[] {
+            200000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownCastka.Name = "numericUpDownCastka";
+            this.numericUpDownCastka.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownCastka.TabIndex = 12;
+            this.numericUpDownCastka.ValueChanged += new System.EventHandler(this.numericUpDownCastka_ValueChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(24, 121);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 13);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Částka";
+            // 
+            // textBoxPopis
+            // 
+            this.textBoxPopis.Location = new System.Drawing.Point(88, 92);
+            this.textBoxPopis.Name = "textBoxPopis";
+            this.textBoxPopis.Size = new System.Drawing.Size(207, 20);
+            this.textBoxPopis.TabIndex = 10;
+            this.textBoxPopis.TextChanged += new System.EventHandler(this.textBoxPopis_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(24, 95);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(33, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Popis";
+            // 
+            // textBoxCisloDokladu
+            // 
+            this.textBoxCisloDokladu.Location = new System.Drawing.Point(88, 66);
+            this.textBoxCisloDokladu.Name = "textBoxCisloDokladu";
+            this.textBoxCisloDokladu.ReadOnly = true;
+            this.textBoxCisloDokladu.Size = new System.Drawing.Size(142, 20);
+            this.textBoxCisloDokladu.TabIndex = 8;
+            this.textBoxCisloDokladu.TextChanged += new System.EventHandler(this.textBoxCisloDokladu_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(24, 69);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Č. dokladu";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(26, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Datum";
+            // 
+            // dateTimePickerDatum
+            // 
+            this.dateTimePickerDatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDatum.Location = new System.Drawing.Point(87, 32);
+            this.dateTimePickerDatum.Name = "dateTimePickerDatum";
+            this.dateTimePickerDatum.Size = new System.Drawing.Size(108, 20);
+            this.dateTimePickerDatum.TabIndex = 5;
             // 
             // groupBoxObdobi
             // 
@@ -162,6 +306,8 @@
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            this.listView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyUp);
             // 
             // columnHeader1
             // 
@@ -198,142 +344,40 @@
             this.columnHeader7.Text = "Poznámka";
             this.columnHeader7.Width = 130;
             // 
-            // groupBox1
+            // comboBoxTridit
             // 
-            this.groupBox1.Controls.Add(this.buttonUlozitJakoNovy);
-            this.groupBox1.Controls.Add(this.buttonUlozit);
-            this.groupBox1.Controls.Add(this.textBoxPoznamka);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.numericUpDownCastka);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBoxPopis);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBoxCisloDokladu);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.dateTimePickerDatum);
-            this.groupBox1.Location = new System.Drawing.Point(3, 91);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(303, 213);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Položka";
+            this.comboBoxTridit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTridit.FormattingEnabled = true;
+            this.comboBoxTridit.Items.AddRange(new object[] {
+            "Datum",
+            "Popis",
+            "Příjmy",
+            "Výdaje"});
+            this.comboBoxTridit.Location = new System.Drawing.Point(90, 319);
+            this.comboBoxTridit.Name = "comboBoxTridit";
+            this.comboBoxTridit.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTridit.TabIndex = 4;
+            this.comboBoxTridit.SelectedIndexChanged += new System.EventHandler(this.comboBoxTridit_SelectedIndexChanged);
             // 
-            // dateTimePickerDatum
+            // label3
             // 
-            this.dateTimePickerDatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDatum.Location = new System.Drawing.Point(87, 32);
-            this.dateTimePickerDatum.Name = "dateTimePickerDatum";
-            this.dateTimePickerDatum.Size = new System.Drawing.Size(108, 20);
-            this.dateTimePickerDatum.TabIndex = 5;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 322);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(62, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Třídit podle";
             // 
-            // label4
+            // checkBoxSestupne
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 35);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Datum";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 69);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Č. dokladu";
-            // 
-            // textBoxCisloDokladu
-            // 
-            this.textBoxCisloDokladu.Location = new System.Drawing.Point(88, 66);
-            this.textBoxCisloDokladu.Name = "textBoxCisloDokladu";
-            this.textBoxCisloDokladu.ReadOnly = true;
-            this.textBoxCisloDokladu.Size = new System.Drawing.Size(142, 20);
-            this.textBoxCisloDokladu.TabIndex = 8;
-            this.textBoxCisloDokladu.TextChanged += new System.EventHandler(this.textBoxCisloDokladu_TextChanged);
-            // 
-            // textBoxPopis
-            // 
-            this.textBoxPopis.Location = new System.Drawing.Point(88, 92);
-            this.textBoxPopis.Name = "textBoxPopis";
-            this.textBoxPopis.Size = new System.Drawing.Size(207, 20);
-            this.textBoxPopis.TabIndex = 10;
-            this.textBoxPopis.TextChanged += new System.EventHandler(this.textBoxPopis_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 95);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(33, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Popis";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 121);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(40, 13);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Částka";
-            // 
-            // numericUpDownCastka
-            // 
-            this.numericUpDownCastka.Location = new System.Drawing.Point(88, 121);
-            this.numericUpDownCastka.Maximum = new decimal(new int[] {
-            200000,
-            0,
-            0,
-            0});
-            this.numericUpDownCastka.Minimum = new decimal(new int[] {
-            200000,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownCastka.Name = "numericUpDownCastka";
-            this.numericUpDownCastka.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownCastka.TabIndex = 12;
-            this.numericUpDownCastka.ValueChanged += new System.EventHandler(this.numericUpDownCastka_ValueChanged);
-            // 
-            // textBoxPoznamka
-            // 
-            this.textBoxPoznamka.Location = new System.Drawing.Point(88, 147);
-            this.textBoxPoznamka.Name = "textBoxPoznamka";
-            this.textBoxPoznamka.Size = new System.Drawing.Size(207, 20);
-            this.textBoxPoznamka.TabIndex = 14;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(24, 150);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 13);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Poznámka";
-            // 
-            // buttonUlozit
-            // 
-            this.buttonUlozit.Enabled = false;
-            this.buttonUlozit.Location = new System.Drawing.Point(214, 173);
-            this.buttonUlozit.Name = "buttonUlozit";
-            this.buttonUlozit.Size = new System.Drawing.Size(83, 34);
-            this.buttonUlozit.TabIndex = 15;
-            this.buttonUlozit.Text = "Uložit";
-            this.buttonUlozit.UseVisualStyleBackColor = true;
-            // 
-            // buttonUlozitJakoNovy
-            // 
-            this.buttonUlozitJakoNovy.Enabled = false;
-            this.buttonUlozitJakoNovy.Location = new System.Drawing.Point(100, 173);
-            this.buttonUlozitJakoNovy.Name = "buttonUlozitJakoNovy";
-            this.buttonUlozitJakoNovy.Size = new System.Drawing.Size(108, 34);
-            this.buttonUlozitJakoNovy.TabIndex = 16;
-            this.buttonUlozitJakoNovy.Text = "Uložit jako nový";
-            this.buttonUlozitJakoNovy.UseVisualStyleBackColor = true;
-            this.buttonUlozitJakoNovy.Click += new System.EventHandler(this.buttonUlozitJakoNovy_Click);
+            this.checkBoxSestupne.AutoSize = true;
+            this.checkBoxSestupne.Location = new System.Drawing.Point(12, 358);
+            this.checkBoxSestupne.Name = "checkBoxSestupne";
+            this.checkBoxSestupne.Size = new System.Drawing.Size(71, 17);
+            this.checkBoxSestupne.TabIndex = 5;
+            this.checkBoxSestupne.Text = "Sestupně";
+            this.checkBoxSestupne.UseVisualStyleBackColor = true;
+            this.checkBoxSestupne.CheckedChanged += new System.EventHandler(this.checkBoxSestupne_CheckedChanged);
             // 
             // Form1
             // 
@@ -346,11 +390,12 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
-            this.groupBoxObdobi.ResumeLayout(false);
-            this.groupBoxObdobi.PerformLayout();
+            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCastka)).EndInit();
+            this.groupBoxObdobi.ResumeLayout(false);
+            this.groupBoxObdobi.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -385,6 +430,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonUlozitJakoNovy;
         private System.Windows.Forms.Button buttonUlozit;
+        private System.Windows.Forms.CheckBox checkBoxSestupne;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxTridit;
     }
 }
 

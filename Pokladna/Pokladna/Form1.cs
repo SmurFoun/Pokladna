@@ -14,6 +14,7 @@ namespace Pokladna
     {
         List<PokladniZaznam> pokladna;
         IRepos repositar;
+        PokladniZaznam vybranyZaznam;
 
         public Form1()
         {
@@ -82,6 +83,101 @@ namespace Pokladna
             textBoxPopis.Text = "";
             numericUpDownCastka.Value = 0;
             textBoxPoznamka.Text = "";
+            textBoxCisloDokladu.Text = "";
+            dateTimePickerDatum.Value = DateTime.Now;
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            VyberZaznam();
+        }
+
+        private void buttonUlozit_Click(object sender, EventArgs e)
+        {
+            vybranyZaznam.Datum = dateTimePickerDatum.Value;
+            vybranyZaznam.Popis = textBoxPopis.Text;
+            vybranyZaznam.Castka = Convert.ToDouble(numericUpDownCastka.Value);
+            vybranyZaznam.Poznamka = textBoxPoznamka.Text;
+            repositar.UpravZaznam(vybranyZaznam);
+            NactiAktMesic();
+            ResetujFormular();         
+        }
+
+        private void ResetujFormular()
+        {
+            textBoxPopis.Text = "";
+            numericUpDownCastka.Value = 0;
+            textBoxPoznamka.Text = "";
+            textBoxCisloDokladu.Text = "";
+            dateTimePickerDatum.Value = DateTime.Now;
+        }
+
+        private void VyberZaznam()
+        {
+            if(listView1.SelectedIndices.Count>0)
+            {
+                int vybranyIndex = listView1.SelectedIndices[0];
+                vybranyZaznam = pokladna[vybranyIndex];
+                dateTimePickerDatum.Value = vybranyZaznam.Datum;
+                textBoxCisloDokladu.Text = vybranyZaznam.Cislo.ToString();
+                textBoxPopis.Text = vybranyZaznam.Popis.ToString();
+                numericUpDownCastka.Value = Convert.ToDecimal(vybranyZaznam.Castka);
+                textBoxPoznamka.Text = vybranyZaznam.Poznamka;
+            }
+        }
+
+        private void listView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch(e.KeyCode)
+            {
+                case Keys.Enter:
+                    VyberZaznam();
+                    break; 
+
+                case Keys.Delete:
+                    if(listView1.SelectedIndices.Count > 0)
+                    {
+                        int vybranyIndex = listView1.SelectedIndices[0];
+                        vybranyZaznam = pokladna[vybranyIndex];
+                        if(MessageBox.Show("Opravdu chcete smazat vybranou položku?", "Mazání položky", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            repositar.SmazZaznam(vybranyZaznam);
+                            NactiAktMesic();
+                            ResetujFormular();
+                        }   
+                    }
+                    break;
+            }
+        }
+
+        private void comboBoxTridit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetriditPokladnu();
+        }
+
+        private void checkBoxSestupne_CheckedChanged(object sender, EventArgs e)
+        {
+            SetriditPokladnu();
+        }
+
+        private void SetriditPokladnu()
+        {
+            string[] sloupce = new string[] { "Datum", "Popis", "Castka", "Castka" };
+            string sloupec = sloupce[comboBoxTridit.SelectedIndex];
+            string smer = checkBoxSestupne.Checked ? "desc" : "asc";
+            if (checkBoxSestupne.Checked)
+            {
+                pokladna.Sort((a, b) => b.Datum.CompareTo(a.Datum));
+            }
+            else
+            {
+                pokladna.Sort((a, b) => a.Datum.CompareTo(b.Datum));
+            }
+            listView1.Items.Clear();
+            foreach (var p in pokladna)
+            {
+                listView1.Items.Add(p.DoLvItem());
+            }
         }
     }
 }
