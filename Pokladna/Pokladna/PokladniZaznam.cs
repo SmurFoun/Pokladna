@@ -44,6 +44,7 @@ namespace Pokladna
             Poznamka = poznamka;
         }
 
+
         public ListViewItem DoLvItem()
         {
             if(Castka > 0)
